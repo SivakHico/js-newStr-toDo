@@ -3,17 +3,26 @@ const toDo = ["walk", "wash", "watch", "drive", "sleep", "eat"];
 const input = document.querySelector("#input-txt");
 const add = document.querySelector("#add");
 
-input.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    toDo.push(input.value);
-    document.querySelector("#content").innerHTML = toDo;
-    input.value = '';
+input.addEventListener("keyup", function (e) {
+  if (e.key === "Enter") {
+    updateView();
   }
 });
 
 add.addEventListener("click", (e) => {
-  document.querySelector("#content").innerText = toDo;
-  input.value = '';
+  updateView();
 });
 
-console.log(toDo);
+function updateView() {
+  toDo.push(input.value);
+  document.querySelector("#content").innerHTML = toDo.map(intoHTML).join("");
+  input.value = "";
+}
+
+const intoHTML = (item) => {
+  return `
+        <li class="list-item">
+          ${item}
+        </li>
+      `;
+};
