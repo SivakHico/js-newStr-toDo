@@ -18,7 +18,7 @@ const toDo = [
   { done: false, text: "smile" },
 ];
 
-document.querySelector("#content").innerHTML = toDo.map(intoHTML).join("");
+render();
 
 const input = document.querySelector("#input-txt");
 const add = document.querySelector("#add");
@@ -35,10 +35,15 @@ add.addEventListener("click", (e) => {
 
 function updateView() {
   toDo.unshift({ done: false, text: input.value });
-  document.querySelector("#content").innerHTML = toDo.map(intoHTML).join("");
+  render();
   input.value = "";
 }
 
-function remove() {
-  console.log(555);
+function remove(index) {
+  toDo.splice(index, 1);
+  render();
+}
+
+function render() {
+  document.querySelector("#content").innerHTML = toDo.map(intoHTML).join("");
 }
