@@ -1,9 +1,29 @@
-const toDo = ["walk", "wash", "watch", "drive", "sleep", "eat"];
+const intoHTML = (item, index) => {
+  return `
+            <li class="list-item">
+              ${item.text}
+              ${item.done}
+            </li>
+            <button onclick='remove(${index})'>❌</button>
+          `;
+};
+
+const toDo = [
+  { done: false, text: "go" },
+  { done: false, text: "come" },
+  { done: false, text: "eat" },
+  { done: false, text: "drink" },
+  { done: false, text: "run" },
+  { done: false, text: "watch" },
+  { done: false, text: "smile" },
+];
+
+document.querySelector("#content").innerHTML = toDo.map(intoHTML).join("");
 
 const input = document.querySelector("#input-txt");
 const add = document.querySelector("#add");
 
-input.addEventListener("keyup", function (e) {
+input.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     updateView();
   }
@@ -14,15 +34,11 @@ add.addEventListener("click", (e) => {
 });
 
 function updateView() {
-  toDo.push(input.value);
+  toDo.unshift({ done: false, text: input.value });
   document.querySelector("#content").innerHTML = toDo.map(intoHTML).join("");
   input.value = "";
 }
 
-const intoHTML = (item) => {
-  return `
-        <li class="list-item">
-          ${item}
-        </li>
-      `;
-};
+function remove() {
+  console.log(555);
+}
