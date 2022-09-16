@@ -18,10 +18,11 @@ const toDo = [
   { done: false, text: "smile" },
 ];
 
-render();
-
 const input = document.querySelector("#input-txt");
 const add = document.querySelector("#add");
+const content = document.querySelector("#content");
+
+render();
 
 input.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
@@ -45,5 +46,5 @@ function remove(index) {
 }
 
 function render() {
-  document.querySelector("#content").innerHTML = toDo.map(intoHTML).join("");
+  content.innerHTML = toDo.map(intoHTML).join("");
 }
